@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const koaBody = require('koa-bodyparser');
+const { createToken } = require('jwt-koa');
 
 const root = new Router();
 // eslint-disable-next-line global-require
@@ -17,7 +18,8 @@ root.post('/auth', koaBody(), async (ctx) => {
   } else if (password !== PASSWORD) {
     ctx.response.body = { success: false, message: 'Wrong password!' };
   } else {
-    ctx.response.body = { success: true, message: 'Logged in!', data: { secret: SECRET } };
+    const token = createToken({ tokenData: { secret: SECRET } });
+    ctx.response.body = { success: true, message: 'Logged in!', data: { secret: SECRET, token } };
   }
 });
 

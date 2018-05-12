@@ -10,4 +10,15 @@ root.get('/', async (ctx) => {
   ctx.body = '<h2>Working..</h2>';
 });
 
+root.post('/auth', koaBody(), async (ctx) => {
+  const { password, username } = ctx.request.body;
+  if (username !== USERNAME) {
+    ctx.response.body = { succes: false, message: 'Wrong username!' };
+  } else if (password !== PASSWORD) {
+    ctx.response.body = { succes: false, message: 'Wrong password!' };
+  } else {
+    ctx.response.body = { succes: true, message: 'Logged in!', data: {} };
+  }
+});
+
 module.exports = root;

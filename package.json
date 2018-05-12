@@ -9,6 +9,7 @@
     "build": "backpack build"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.1",
     "dotenv": "5.0.1",
     "koa": "2.5.1",
     "koa-bodyparser": "^4.2.0",

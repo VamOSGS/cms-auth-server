@@ -160,9 +160,9 @@ root.get('/', async ctx => {
 root.post('/auth', koaBody(), async ctx => {
   const { password, username } = ctx.request.body;
   if (username !== USERNAME) {
-    ctx.response.body = { success: false, message: 'Wrong username!' };
+    ctx.response.body = { success: false, field: 'username', message: 'Wrong username!' };
   } else if (password !== PASSWORD) {
-    ctx.response.body = { success: false, message: 'Wrong password!' };
+    ctx.response.body = { success: false, field: 'password', message: 'Wrong password!' };
   } else {
     const token = createToken({ tokenData: { secret: SECRET } });
     ctx.response.body = { success: true, message: 'Logged in!', data: { secret: SECRET, token } };
